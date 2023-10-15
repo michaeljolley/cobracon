@@ -4,8 +4,6 @@ import preact from '@astrojs/preact';
 
 export default defineConfig({
 	output: 'server',
-	adapter: netlify({
-		functionPerRoute: true,
-	}),
+	adapter: netlify(),
 	integrations: [preact()],
 });
