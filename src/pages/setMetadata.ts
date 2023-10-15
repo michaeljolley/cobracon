@@ -14,6 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
 			},
 			body: JSON.stringify({
 				public_metadata: {
+					agent: body.agent,
 					allegiance: body.allegiance,
 				},
 			}),

@@ -1,26 +1,21 @@
+import { useStore } from '@nanostores/preact';
 import { $user } from '../stores/userStore';
-import Roster from './Roster';
-import Select from './Select';
+import './Badge.css';
 
 export default function Badge() {
-	let user = $user.get();
-
-	$user.subscribe((updatedUser) => {
-		user = updatedUser;
-	});
-
+	const user = useStore($user);
 	return (
-		<>
-			<h1>Welcome {user?.firstName}!</h1>
-			<p>
-				You've made it through the first phase of your induction. Now, the real
-				decision lies ahead.
-			</p>
-
-			<h2>Choose Your Allegiance</h2>
-
-			<Select />
-			<Roster />
-		</>
+		<div class="badge-container">
+			<div class="badge">
+				<img
+					style="width:100%"
+					src={`https://res.cloudinary.com/dk3rdh3yo/image/upload/l_fetch:${btoa(
+						user?.imageUrl as string
+					)},w_175,h_450,c_fill/fl_layer_apply,g_north_west,x_35,y_113/v1697076582/cobradex/${
+						user?.agent || 'airborne'
+					}/v1/card.png`}
+				/>
+			</div>
+		</div>
 	);
 }

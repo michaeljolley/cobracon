@@ -1,23 +1,34 @@
-import { atom } from 'nanostores';
+import { atom, computed, onMount, task } from 'nanostores';
+import { createClient } from '@supabase/supabase-js';
 
-export type User = {
-	fullName: string;
-	firstName: string;
-	username: string;
-	allegiance?: 'gijoe' | 'cobra';
-	character?: string;
-	id: string;
+export type Agent = {
+	versionname: string;
+	name: string;
+	card_image_url: string;
+	allegiance: 'GI Joe' | 'Cobra';
 };
 
-export const $user = atom<User | null>(null);
+export const $roster = atom<Agent[]>([]);
 
-export const updateUser = (props: Object) => {
-	const user = $user.get();
-	$user.set({ ...user, ...(props as User) });
-};
+export const $gijoes = computed($roster, (agents) =>
+	agents.filter((i) => i.allegiance === 'GI Joe')
+);
+export const $cobras = computed($roster, (agents) =>
+	agents.filter((i) => i.allegiance === 'Cobra')
+);
 
-$user.subscribe((user) => {
-	document
-		.querySelector('html')!
-		.setAttribute('data-theme', user?.allegiance || '');
+onMount($roster, () => {
+	task(async () => {
+		const roster = await fetchRoster();
+		$roster.set(roster as []);
+	});
 });
+
+const fetchRoster = async (): Promise<Agent[]> => {
+	const supabase = createClient(
+		'https://wsoiqltmfzjoqxysfilv.supabase.co',
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indzb2lxbHRtZnpqb3F4eXNmaWx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTcwNjkzODUsImV4cCI6MjAxMjY0NTM4NX0.WQS3Z_sTYHtvuuAapA12xAVhGo4qrTVFOskRuKWTGfU'
+	);
+	const { data } = await supabase.from('roster_v1').select();
+	return data as Agent[];
+};

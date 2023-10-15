@@ -1,0 +1,20 @@
+.roster ul li {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	text-shadow: var(--text-shadow-gray);
+	cursor: pointer;
+	font-size: 1.25rem;
+}
+
+.roster ul li img {
+	width: 3rem;
+	border-radius: 1rem;
+	box-shadow: var(--text-shadow-gray);
+}
+
+@media screen and (max-width: 640px) {
+	.roster ul li img {
+		width: 3rem;
+	}
+}

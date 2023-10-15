@@ -95,6 +95,7 @@ body {
 	box-sizing: border-box;
 	margin: 0;
 	height: 100%;
+	width: 100%;
 	background-color: #000000;
 	background-image: var(--bg-image);
 	background-repeat: no-repeat;
@@ -119,7 +120,7 @@ body {
 		rgba(0, 0, 0, 0) 100%
 	);
 	background-size: auto 4px;
-	z-index: 1;
+	z-index: 3;
 }
 
 .overlay::before {
@@ -152,8 +153,9 @@ body {
 	box-sizing: inherit;
 	position: absolute;
 	height: 100%;
+	width: 100%;
 	max-width: 100%;
-	padding: 4rem;
+	padding: 2rem 4rem;
 	text-transform: uppercase;
 	color: var(--text);
 	text-shadow: var(--text-shadow);
@@ -162,12 +164,6 @@ body {
 @media screen and (max-width: 600px) {
 	.terminal {
 		padding: 2rem;
-	}
-}
-
-@media screen and (min-width: 1024px) {
-	.terminal {
-		max-width: 60%;
 	}
 }
 
@@ -215,71 +211,8 @@ button {
 	margin: 1rem 0;
 }
 
-.allegiance {
-	display: flex;
-	gap: 0.5rem;
-	margin-bottom: -3px;
-}
-
-.allegiance button {
-	display: flex;
-	justify-items: center;
-	width: 40%;
-	align-items: center;
-	color: var(--card-gray);
-	font-size: 1.25rem;
-	font-weight: 700;
-	background-color: var(--text-gray);
-	border: dashed var(--card-gray);
-	border-width: 3px 3px 0 3px;
-	border-radius: 1rem 1rem 0 0;
-	margin: 0;
-}
-
-.allegiance button svg {
-	fill: var(--card-gray);
-	margin-right: 0.5rem;
-}
-
-.allegiance button svg {
-	width: 2.5rem;
-	height: 2.5rem;
-}
-
-.allegiance button.selected,
-.allegiance button.selected {
-	background-color: var(--bg-index-card);
-	color: var(--card-gray);
-}
-
-.allegiance button.cobra:hover svg,
-.allegiance button.cobra.selected svg {
-	fill: var(--bg-selected-cobra);
-}
-.allegiance button.gijoe:hover svg,
-.allegiance button.gijoe.selected svg {
-	fill: var(--bg-selected-gijoe);
-}
-
-.alias {
-	display: flex;
-	color: var(--card-gray);
-	font-size: 1.25rem;
-	font-weight: 700;
-	background-color: var(--bg-index-card);
-	border: dashed var(--card-gray);
-	border-width: 0 3px 3px 3px 3px;
-	border-radius: 0 1rem 1rem 1rem;
-	margin: 0;
-	padding: 1rem;
-}
-
-.alias h3 {
-	color: var(--card-gray);
-	text-shadow: none;
-}
-
-.alias .roster {
+.opener {
+	flex: 0 1 auto;
 }
 
 /** CLERK **/

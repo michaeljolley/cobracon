@@ -8,8 +8,9 @@ const userMapper = (clerkUser: any): User => {
 		fullName: clerkUser.fullName,
 		username: clerkUser.username,
 		allegiance: clerkUser.publicMetadata.allegiance,
-		character: clerkUser.publicMetadata.character,
+		agent: clerkUser.publicMetadata.character,
 		id: clerkUser.id,
+		imageUrl: clerkUser.imageUrl,
 	};
 };
 

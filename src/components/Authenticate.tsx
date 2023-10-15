@@ -1,21 +1,15 @@
 import { useRef } from 'preact/hooks';
-import { $user, type User } from '../stores/userStore';
+import { useStore } from '@nanostores/preact';
+import { $user } from '../stores/userStore';
 import { $clerk } from '../stores/clerkStore';
 
 export default function Authenticate() {
 	const signIn = useRef<HTMLDivElement>(null);
-
-	let user = $user.get();
-
-	$user.subscribe((updatedUser) => {
-		user = updatedUser;
-	});
+	const user = useStore($user);
 
 	const mountSignIn = () => {
-		if (!$user.get()) {
-			const clerk = $clerk.get();
-			clerk.openSignIn(signIn.current!);
-		}
+		const clerk = $clerk.get();
+		clerk.openSignIn(signIn.current!);
 	};
 
 	return (

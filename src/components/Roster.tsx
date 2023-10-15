@@ -1,42 +1,32 @@
-import { useEffect, useState } from 'preact/hooks';
-import { $user } from '../stores/userStore';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-	'https://wsoiqltmfzjoqxysfilv.supabase.co',
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indzb2lxbHRtZnpqb3F4eXNmaWx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTcwNjkzODUsImV4cCI6MjAxMjY0NTM4NX0.WQS3Z_sTYHtvuuAapA12xAVhGo4qrTVFOskRuKWTGfU'
-);
+import { useStore } from '@nanostores/preact';
+import { $cobras, $gijoes } from '../stores/rosterStore';
+import { $allegiance } from '../stores/allegianceStore';
+import AgentSelect from './AgentSelect';
+import './Roster.css';
 
 export default function Roster() {
-	const [roster, setRoster] = useState([]);
-
-	useEffect(() => {
-		getRoster();
-	}, []);
-
-	async function getRoster() {
-		const { data } = await supabase.from('roster_v1').select();
-		setRoster(data as []);
-	}
-
-	let user = $user.get();
-
-	$user.subscribe((updatedUser) => {
-		user = updatedUser;
-	});
+	const allegiance = useStore($allegiance);
+	const gijoes = useStore($gijoes);
+	const cobras = useStore($cobras);
 
 	return (
 		<>
-			<section class="alias">
+			<section class="roster">
 				<h3>Choose an Alias</h3>
-				<div class="roster">
-					<div class="gijoe">
-						{roster.map((agent) => (
-							<li key={agent.name}>{agent.name}</li>
-						))}
-					</div>
-					<div class="cobra"></div>
-				</div>
+				<ul
+					className={`gijoe ${
+						!allegiance || allegiance === 'gijoe' ? 'selected' : ''
+					}`}
+				>
+					{gijoes.map((agent) => (
+						<AgentSelect agent={agent} />
+					))}
+				</ul>
+				<ul className={`cobra ${allegiance === 'cobra' ? 'selected' : ''}`}>
+					{cobras.map((agent) => (
+						<AgentSelect agent={agent} />
+					))}
+				</ul>
 			</section>
 		</>
 	);

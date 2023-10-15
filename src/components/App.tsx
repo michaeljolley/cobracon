@@ -1,15 +1,12 @@
+import { useStore } from '@nanostores/preact';
 import { $user } from '../stores/userStore';
 import Welcome from './Welcome';
-import Badge from './Badge';
+import Me from './Me';
 
 export default function App() {
-	let user;
+	const user = useStore($user);
 
-	$user.subscribe((newUser) => {
-		user = newUser;
-	});
-
-	if (user) return <Badge />;
+	if (user) return <Me />;
 
 	return <Welcome />;
 }

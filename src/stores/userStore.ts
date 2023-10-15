@@ -5,15 +5,30 @@ export type User = {
 	firstName: string;
 	username: string;
 	allegiance?: 'gijoe' | 'cobra';
-	character?: string;
+	agent?: string;
 	id: string;
+	imageUrl: string;
 };
 
 export const $user = atom<User | null>(null);
 
-export const updateUser = (props: Object) => {
-	const user = $user.get();
-	$user.set({ ...user, ...(props as User) });
+export const updateUser = async (props: Object) => {
+	const user = { ...$user.get(), ...(props as User) };
+	$user.set(user);
+
+	if (user && user.id) {
+		await fetch('/setMetadata', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				uid: user?.id,
+				agent: user.agent,
+				allegiance: user.allegiance,
+			}),
+		});
+	}
 };
 
 $user.subscribe((user) => {

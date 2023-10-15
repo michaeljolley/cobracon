@@ -1,0 +1,8 @@
+.badge-container {
+}
+
+@media screen and (min-width: 1024px) {
+	.badge-container {
+		order: 2;
+	}
+}
