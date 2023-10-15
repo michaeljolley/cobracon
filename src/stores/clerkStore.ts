@@ -1,6 +1,7 @@
 import { atom } from 'nanostores';
 import Clerk from '@clerk/clerk-js';
 import { updateUser, type User } from './userStore';
+import { updateAllegiance } from './allegianceStore';
 
 const userMapper = (clerkUser: any): User => {
 	return {
@@ -27,6 +28,7 @@ const clerkListener = (event: any) => {
 	if (event.user) {
 		const user = userMapper(event.user);
 		updateUser(user);
+		updateAllegiance(user.allegiance || 'gijoe');
 	}
 };
 

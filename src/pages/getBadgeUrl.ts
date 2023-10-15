@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request }) => {
 		JSON.stringify({
 			url: `https://res.cloudinary.com/dk3rdh3yo/image/upload/l_fetch:${btoa(
 				user?.imageUrl as string
-			)},w_175,h_450,c_fill/fl_layer_apply,g_north_west,x_35,y_113/v1697076582/cobradex/${
+			)},w_175,h_450,c_fill/fl_layer_apply,g_north_west,x_35,y_113/w_1280/v1697076582/cobradex/${
 				user?.agent || 'airborne'
 			}/v1/card.png`,
 			allegiance: user?.allegiance,
