@@ -16,7 +16,7 @@ const { searchParams } = url;
 if (searchParams.get('code')) {
 	const code = atob(searchParams.get('code')!);
 
-	const res = await fetch(`http://localhost:8888/getBadgeUrl`, {
+	const res = await fetch(`httpd://cobracon.netlify.app/getBadgeUrl`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
