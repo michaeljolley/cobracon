@@ -3,9 +3,10 @@ export interface Props {
 	title: string;
 	description: string;
 	permalink: string;
+	ograph?: string;
 }
 
-const { title, description, permalink } = Astro.props;
+const { title, description, permalink, ograph } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -44,7 +45,7 @@ const { title, description, permalink } = Astro.props;
 <meta property="og:url" content={permalink} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content="" />
+<meta property="og:image" content={ograph} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -52,4 +53,4 @@ const { title, description, permalink } = Astro.props;
 <meta property="twitter:creator" content="@michaeljolley" />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content="" />
+<meta property="twitter:image" content={ograph} />
