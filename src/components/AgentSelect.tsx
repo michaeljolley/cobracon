@@ -20,6 +20,7 @@ export default function AgentSelect(props: { agent: Agent }) {
 			key={agent.name}
 			title={`Select ${agent.versionname}`}
 			onClick={selectAlias}
+			className={(user.agent || 'airborne') === agent.name ? 'selected' : ''}
 		>
 			<img
 				src={`https://res.cloudinary.com/dk3rdh3yo/image/upload/ar_1,c_crop,g_north_west,w_150,x_50,y_150,f_auto/v1697076582/cobradex/${agent.name}/v1/card.png`}

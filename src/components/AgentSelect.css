@@ -5,6 +5,26 @@
 	text-shadow: var(--text-shadow-gray);
 	cursor: pointer;
 	font-size: 1.25rem;
+	margin: 0;
+	padding: 0.5rem;
+	border-radius: 1rem;
+}
+
+.roster ul li.selected {
+	border: 2px dashed;
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='gijoe'] {
+	.roster ul li.selected {
+		border-color: var(--bg-selected-gijoe);
+	}
+}
+
+[data-theme='cobra'] {
+	.roster ul li.selected {
+		border-color: var(--bg-selected-cobra);
+	}
 }
 
 .roster ul li img {

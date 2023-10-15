@@ -1,6 +1,91 @@
 .badge-container {
 }
 
+.badge img {
+	width: 100%;
+	max-width: 48rem;
+}
+.share {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2rem;
+	margin-top: 1.5rem;
+}
+
+.share button,
+.share a {
+	border-radius: 0.75rem;
+	display: flex;
+	padding: 0.5rem 1rem;
+	align-items: center;
+	border: 2px dashed;
+	gap: 0.5rem;
+	fill: var(--text-header);
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	text-shadow: var(--text-shadow);
+	margin: 0;
+	background: rgba(0, 0, 0, 0.5);
+	color: var(--header-gray);
+	border-color: var(--text);
+}
+
+.share a:hover,
+.share a:active,
+.share button:hover,
+.share button:active {
+	background: rgba(255, 255, 255, 0.2);
+	color: rgba(255, 255, 255, 0.8);
+	border-color: rgba(255, 255, 255, 0.4);
+}
+
+.share a:before,
+.share a:after {
+	content: '';
+}
+
+@media screen and (min-width: 768px) {
+	.share button,
+	.share a {
+		font-size: 1.25rem;
+	}
+}
+
+[data-theme='gijoe'] {
+	.share button,
+	.share a {
+		background: rgba(0, 0, 0, 0.5);
+		color: var(--header-gray);
+		border-color: var(--text-green);
+	}
+	.share a:hover,
+	.share a:active,
+	.share button:hover,
+	.share button:active {
+		background: var(--bg-selected-gijoe);
+		color: rgba(255, 255, 255, 0.8);
+		border-color: rgba(255, 255, 255, 0.4);
+	}
+}
+
+[data-theme='cobra'] {
+	.share button,
+	.share a {
+		background: rgba(0, 0, 0, 0.3);
+		color: var(--header-gray);
+		border-color: var(--text-red);
+	}
+	.share a:hover,
+	.share a:active,
+	.share button:hover,
+	.share button:active {
+		background: var(--bg-selected-cobra);
+		color: rgba(255, 255, 255, 0.8);
+		border-color: rgba(255, 255, 255, 0.4);
+	}
+}
+
 @media screen and (min-width: 1024px) {
 	.badge-container {
 		order: 2;

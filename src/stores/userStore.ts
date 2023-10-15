@@ -30,9 +30,3 @@ export const updateUser = async (props: Object) => {
 		});
 	}
 };
-
-$user.subscribe((user) => {
-	document
-		.querySelector('html')!
-		.setAttribute('data-theme', user?.allegiance || '');
-});

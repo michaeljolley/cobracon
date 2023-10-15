@@ -25,6 +25,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	overflow: auto;
+	gap: 2rem;
 }
 
 @media screen and (max-width: 640px) {

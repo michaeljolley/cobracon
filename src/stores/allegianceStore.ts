@@ -13,3 +13,7 @@ onMount(($allegiance) => {
 		updateAllegiance(user.allegiance);
 	}
 });
+
+$allegiance.subscribe((allegiance) => {
+	document.querySelector('html')!.setAttribute('data-theme', allegiance || '');
+});

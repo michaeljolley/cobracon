@@ -1,0 +1,21 @@
+.welcome {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: 1fr;
+}
+
+.badge img {
+	width: 100%;
+	max-width: 48rem;
+}
+
+@media screen and (min-width: 1024px) {
+	.welcome {
+		grid-template-columns: 1fr 1fr;
+	}
+	.badge {
+		order: 2;
+	}
+}

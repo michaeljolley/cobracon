@@ -108,6 +108,10 @@ body {
 	text-shadow: var(--text-shadow);
 }
 
+button {
+	font-family: 'Inconsolata', Helvetica, sans-serif;
+}
+
 .overlay {
 	pointer-events: none;
 	position: absolute;
