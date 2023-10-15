@@ -1,28 +1,25 @@
 ---
+export const prerender = true;
 import BaseHead, {
-  type Props as BaseHeadProps,
-} from "../components/BaseHead.astro";
-import "../styles/main.css";
+	type Props as BaseHeadProps,
+} from '../components/BaseHead.astro';
+import '../styles/main.css';
+import App from '../components/App';
 
-import TextInput from "../components/TextInput";
-
-export interface Props extends BaseHeadProps {}
-
-const { title, description, permalink } = Astro.props;
+const title = 'CobraCon 2023: Mission Briefing';
+const description =
+	'Earn your badge, join the ranks, and let history remember your name!';
+const permalink = 'https://cobracon.netlify.app/';
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead {title} {description} {permalink}/>
+		<BaseHead {title} {description} {permalink} />
 	</head>
 	<body>
 		<div class="overlay"></div>
 		<div class="terminal">
-			<h1>Error <span class="errorcode">404</span></h1>
-			<p>The page you are looking for might have been removed, had its name changed or is temporarily unavailable.</p>
-			<p>Please try to <a href="#1">go back</a> or <a href="#2">return to the homepage</a>.</p>
-			<p>Enter your name below.</p>
-			<TextInput type="text" name="test" client:load/>
+			<App client:only />
 		</div>
 	</body>
 </html>
