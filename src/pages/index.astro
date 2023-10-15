@@ -1,5 +1,5 @@
 ---
-export const prerender = false;
+export const prerender = true;
 import BaseHead, {
 	type Props as BaseHeadProps,
 } from '../components/BaseHead.astro';
@@ -10,8 +10,6 @@ const title = 'CobraCon 2023: Mission Briefing';
 const description =
 	'Earn your badge, join the ranks, and let history remember your name!';
 const permalink = 'https://cobracon.netlify.app/';
-
-const code = new URL(Astro.request.url).searchParams.get('code');
 ---
 
 <html lang="en">
@@ -21,7 +19,7 @@ const code = new URL(Astro.request.url).searchParams.get('code');
 	<body>
 		<div class="overlay"></div>
 		<div class="terminal">
-			<App client:only code={code} />
+			<App client:only />
 		</div>
 	</body>
 </html>
