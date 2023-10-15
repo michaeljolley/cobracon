@@ -13,7 +13,7 @@ export default function Badge() {
 
 	const copyToClipboard = () => {
 		navigator.clipboard.writeText(
-			`https://cobracon.netlify.app/?code=${getHash()}`
+			`https://cobracon.netlify.app/badge/?code=${getHash()}`
 		);
 		const oldHTML = copyBtn.current?.innerHTML;
 		copyBtn.current!.innerHTML = 'Copied!';
@@ -36,7 +36,7 @@ export default function Badge() {
 			<div class="share">
 				<a
 					title="Share on Twitter"
-					href={`https://twitter.com/intent/tweet?url=https://cobracon.netlify.app/?code=${getHash()}&text=It's official, I've joined ${
+					href={`https://twitter.com/intent/tweet?url=https://cobracon.netlify.app/badge/?code=${getHash()}&text=It's official, I've joined ${
 						user?.allegiance === 'gijoe' ? 'GI Joe' : 'Cobra'
 					}! Pick a side at CobraCon!`}
 				>
