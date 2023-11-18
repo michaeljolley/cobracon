@@ -158,7 +158,9 @@ button {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+	max-height: 100%;
 	max-width: 100%;
+	overflow: scroll;
 	padding: 2rem 4rem;
 	text-transform: uppercase;
 	color: var(--text);
@@ -203,6 +205,16 @@ h2,
 h3,
 .code {
 	color: var(--text-header);
+}
+
+h1 {
+	font-size: 1.4em;
+}
+h2 {
+	font-size: 1.15em;
+}
+p {
+	font-size: 0.9em;
 }
 
 button {

@@ -72,7 +72,7 @@ export default function Welcome(props: { code: string | null }) {
 						</li>
 						<li>
 							<span class="code">2</span> Upon successful verification, choose
-							your allegiance.
+							your allegiance & codename.
 						</li>
 						<li>
 							<span class="code">3</span> Your badge awaits, signaling your

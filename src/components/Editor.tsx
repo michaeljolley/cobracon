@@ -15,7 +15,7 @@ export default function Editor() {
 					real decision lies ahead.
 				</p>
 
-				<h2>Choose Your Allegiance</h2>
+				<h2>Choose Your Allegiance & Codename</h2>
 			</div>
 			<Allegiance />
 			<Roster />
