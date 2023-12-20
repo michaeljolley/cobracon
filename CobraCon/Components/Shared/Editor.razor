@@ -1,0 +1,25 @@
+﻿@inject CobraStateContainer CobraStateContainer
+
+<div class="badge">
+	@if (CobraStateContainer.currentUser != null)
+	{
+		<h2>
+			@CobraStateContainer.currentUser.Name joined
+			@CobraStateContainer.currentUser.AllegianceDisplay!
+		</h2>
+		<p>Will you join them?</p>
+		<img src="@CobraStateContainer.currentUser.Url" />
+	}
+</div>
+
+@code {
+	protected override void OnInitialized()
+	{
+		CobraStateContainer.OnStateChange += StateHasChanged;
+	}
+
+	public void Dispose()
+	{
+		CobraStateContainer.OnStateChange -= StateHasChanged;
+	}
+}

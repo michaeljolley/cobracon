@@ -32,7 +32,6 @@
 	<meta property="og:url" content={permalink} />
 	<meta property="og:title" content="CobraCon 2023: Mission Briefing" />
 	<meta property="og:description" content="Earn your badge, join the ranks, and let history remember your name!" />
-	<meta property="og:image" content={ograph} />
 
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image" />
@@ -40,8 +39,9 @@
 	<meta property="twitter:creator" content="@@michaeljolley" />
 	<meta property="twitter:title" content="CobraCon 2023: Mission Briefing" />
 	<meta property="twitter:description" content="Earn your badge, join the ranks, and let history remember your name!" />
-	<meta property="twitter:image" content={ograph} />
+
   <HeadOutlet />
+
 </head>
 
 <body>
@@ -49,6 +49,10 @@
 	<div class="terminal">
 		<Routes />
 		<script src="_framework/blazor.web.js"></script>
+
+		<script id="clerkTag" async data-clerk-frontend-api="free-eft-35.clerk.accounts.dev" data-clerk-publishable-key="pk_test_ZnJlZS1lZnQtMzUuY2xlcmsuYWNjb3VudHMuZGV2JA" 
+						src="https://free-eft-35.clerk.accounts.dev/npm/@@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
+		<script src="/app.js"></script>
 	</div>
 </body>
 

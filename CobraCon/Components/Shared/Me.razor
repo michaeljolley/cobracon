@@ -1,0 +1,20 @@
+﻿@using System.Text
+
+@inject CobraStateContainer CobraStateContainer
+
+<HeadContent>
+	<meta property="og:image" content="@CobraStateContainer.currentUser.Url" />
+	<meta property="twitter:image" content="@CobraStateContainer.currentUser.Url" />
+</HeadContent>
+
+<div class="welcome">
+	<Badge User="@CobraStateContainer.currentUser" />
+	<Editor />
+</div>
+
+@code {
+	protected override async Task OnInitializedAsync()
+	{
+	
+	}
+}

@@ -1,0 +1,28 @@
+﻿@rendermode InteractiveServer
+@inject CobraStateContainer CobraStateContainer
+@inject IJSRuntime JS
+
+
+@if (CobraStateContainer.currentUser == null)
+{
+	<div id="sign-in"></div>
+	<button @onclick="MountSignIn">Authenticate</button>
+}
+
+@code {
+
+	private async Task MountSignIn()
+	{
+		await JS.InvokeVoidAsync("mountSignIn");
+	}
+
+	protected override void OnInitialized()
+	{
+		CobraStateContainer.OnStateChange += StateHasChanged;
+	}
+
+	public void Dispose()
+	{
+		CobraStateContainer.OnStateChange -= StateHasChanged;
+	}
+}

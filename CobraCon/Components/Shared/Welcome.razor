@@ -1,0 +1,83 @@
+﻿@using System.Text
+
+@inject NavigationManager NavManager
+@inject ClerkApiClient ClerkClient
+@inject CobraStateContainer CobraStateContainer
+
+<HeadContent>
+	@if (codeUser != null)
+	{
+		<meta property="og:image" content="@codeUser.Url" />
+		<meta property="twitter:image" content="@codeUser.Url" />
+	}
+</HeadContent>
+
+<div class="welcome">
+	<Badge User="@codeUser"/>
+
+	<div class="briefing">
+		<h1>MISSION BRIEFING</h1>
+		<p>Attention, recruit!</p>
+		<p>
+			The epic saga of G.I. Joe and Cobra continues, and now YOU are
+			called to the frontline. To stand among these legends, you must
+			first secure your virtual badge - a symbol of valor, resembling the
+			iconic G.I. Joe index cards.
+		</p>
+
+		<h2>YOUR MISSION</h2>
+		<ul>
+			<li>
+				<span class="code">1</span> Authenticate your identity using our
+				encrypted channels: GitHub or Twitter.
+			</li>
+			<li>
+				<span class="code">2</span> Upon successful verification, choose
+				your allegiance & codename.
+			</li>
+			<li>
+				<span class="code">3</span> Your badge awaits, signaling your
+				allegiance in this storied battle.
+			</li>
+		</ul>
+
+		<h2>BEGIN AUTHENTICATION</h2>
+		<p>
+			Time is of the essence. Earn your badge, join the ranks, and let
+			history remember your name!
+		</p>
+
+		<Authenticate/>
+
+	</div>
+</div>
+
+@code {
+	User? codeUser;
+
+	protected override async Task OnInitializedAsync()
+	{
+		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("code", out var _userCode))
+		{
+			var code = DecodeUserCode(_userCode);
+
+			var clerkUsers = await ClerkClient.Users.GetAsync(u =>
+					{
+						u.QueryParameters.UserId = new string[] { code };
+					});
+
+			if (clerkUsers.Count > 0)
+			{
+				codeUser = new Models.User(clerkUsers.First());
+			}
+		}
+	}
+
+	private string DecodeUserCode(string code)
+	{
+		byte[] bytes = System.Convert.FromBase64String(code);
+		string toUserId = ASCIIEncoding.ASCII.GetString(bytes);
+		return toUserId;
+	}
+}
