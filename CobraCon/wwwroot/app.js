@@ -16,16 +16,16 @@ window.mountSignIn = () => {
 window.homeRef = null;
 window.user = null;
 
-const updateUser = () => {
+const updateUser = async () => {
   if (window.user && window.homeRef) {
     await window.homeRef.invokeMethodAsync('UpdateUser', userMapper(window.user));
   }
 };
 
-window.setHomeRef = (homeRef, allegiance) => {
+window.setHomeRef = async (homeRef, allegiance) => {
   window.homeRef = homeRef;
   document.querySelector('html').setAttribute('data-theme', allegiance || '');
-  updateUser();
+  await updateUser();
 }
 
 window.copyToClipboard = (url) => {
@@ -35,7 +35,7 @@ window.copyToClipboard = (url) => {
 const clerkListener = async (event) => {
   if (event.user) {
     window.user = event.user;
-    updateUser();
+    await updateUser();
   }
 };
 
