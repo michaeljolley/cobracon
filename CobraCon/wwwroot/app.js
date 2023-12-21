@@ -13,12 +13,14 @@ window.mountSignIn = () => {
   }
 };
 
+window.userRefreshed = false;
 window.homeRef = null;
 window.user = null;
 
 const updateUser = async () => {
-  if (window.user && window.homeRef) {
+  if (window.user && window.homeRef && !window.userRefreshed) {
     await window.homeRef.invokeMethodAsync('UpdateUser', userMapper(window.user));
+    window.userRefreshed = true;
   }
 };
 
@@ -39,9 +41,11 @@ const clerkListener = async (event) => {
       window.user.id != user.id ||
       window.allegiance != user.allegiance ||
       window.agent != user.agent) {
-        window.user = event.user;
-        await updateUser();
-      }
+
+      window.user = event.user;
+      window.userRefreshed = false;
+      await updateUser();
+    }
   }
 };
 
