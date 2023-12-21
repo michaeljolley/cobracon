@@ -34,8 +34,14 @@ window.copyToClipboard = (url) => {
 
 const clerkListener = async (event) => {
   if (event.user) {
-    window.user = event.user;
-    await updateUser();
+    const { user } = event;
+    if (!window.user ||
+      window.user.id != user.id ||
+      window.allegiance != user.allegiance ||
+      window.agent != user.agent) {
+        window.user = event.user;
+        await updateUser();
+      }
   }
 };
 
