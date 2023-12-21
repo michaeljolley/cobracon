@@ -1,0 +1,32 @@
+﻿@inject CobraStateContainer CobraStateContainer
+@inject RosterStateContainer RosterStateContainer
+
+<section class="roster">
+	<h3>Choose an Alias</h3>
+	<ul class="gijoe @(CobraStateContainer.currentAllegiance == "gijoe" ? "selected" : "")">
+		@foreach (Agent agent in RosterStateContainer.GIJoeRoster)
+		{
+			<AgentSelect agent=@agent />
+		}
+	</ul>
+	<ul class="cobra @(CobraStateContainer.currentAllegiance == "cobra" ? "selected" : "")">
+		@foreach (Agent agent in RosterStateContainer.CobraRoster)
+		{
+			<AgentSelect agent=@agent />
+		}
+	</ul>
+</section>
+
+@code {
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		CobraStateContainer.OnStateChange += StateHasChanged;
+		RosterStateContainer.OnStateChange += StateHasChanged;
+	}
+
+	public void Dispose() {
+		CobraStateContainer.OnStateChange -= StateHasChanged;
+		RosterStateContainer.OnStateChange -= StateHasChanged;
+	}
+}

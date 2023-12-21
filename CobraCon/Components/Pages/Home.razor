@@ -1,0 +1,42 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+@inject CobraStateContainer CobraStateContainer
+
+@if (CobraStateContainer.currentUser != null)
+{
+	<Me/>
+}
+else
+{
+	<Welcome/>
+}
+
+@code {
+
+	private DotNetObjectReference<Home>? objRef;
+
+	protected override void OnInitialized() 
+	{
+		base.OnInitialized();
+		objRef = DotNetObjectReference.Create(this);
+
+		CobraStateContainer.OnStateChange += StateHasChanged;
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		await base.OnAfterRenderAsync(firstRender);
+		await JS.InvokeAsync<Task>("setHomeRef", objRef, CobraStateContainer.currentAllegiance);
+	}
+
+	[JSInvokable]
+	public void UpdateUser(User user) => CobraStateContainer.SetUserValue(user);
+
+	public void Dispose()
+	{
+		CobraStateContainer.OnStateChange -= StateHasChanged;
+		objRef?.Dispose();
+	}
+}
