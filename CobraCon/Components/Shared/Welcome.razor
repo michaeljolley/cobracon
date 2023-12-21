@@ -13,7 +13,18 @@
 </HeadContent>
 
 <div class="welcome">
-	<Badge User="@codeUser"/>
+
+	<div class="badge">
+		@if (codeUser != null)
+		{
+			<h2>
+				@codeUser.Name joined
+				@codeUser.AllegianceDisplay!
+			</h2>
+			<p>Will you join them?</p>
+			<img src="@codeUser.Url" />
+		}
+	</div>
 
 	<div class="briefing">
 		<h1>MISSION BRIEFING</h1>
@@ -57,6 +68,9 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		await base.OnInitializedAsync();
+		CobraStateContainer.OnStateChange += StateHasChanged;
+
 		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
 		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("code", out var _userCode))
 		{
@@ -80,4 +94,6 @@
 		string toUserId = ASCIIEncoding.ASCII.GetString(bytes);
 		return toUserId;
 	}
+
+	public void Dispose() => CobraStateContainer.OnStateChange -= StateHasChanged;
 }

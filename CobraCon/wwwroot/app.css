@@ -262,34 +262,11 @@ button {
   text-shadow: none;
 }
 
-.cl-footerAction a {
-  color: var(--text-header);
-}
-
-.cl-footerAction a:hover,
-.cl-footerAction a:active {
-  color: var(--modal-link-hover);
-}
-
-.welcome {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr;
-}
-
-  .welcome .badge img {
-    width: 100%;
-    max-width: 48rem;
+  .cl-footerAction a {
+    color: var(--text-header);
   }
 
-@media screen and (min-width: 1024px) {
-  .welcome {
-    grid-template-columns: 1fr 1fr;
-  }
-
-    .welcome .badge {
-      order: 2;
+    .cl-footerAction a:hover,
+    .cl-footerAction a:active {
+      color: var(--modal-link-hover);
     }
-}

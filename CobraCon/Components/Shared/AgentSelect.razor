@@ -1,0 +1,37 @@
+﻿@inject CobraStateContainer CobraStateContainer
+@inject ClerkApiClient ClerkClient
+
+<li key="@agent.Name"
+		title="Select @agent.VersionName"
+		@onclick="SelectAgentAsync"
+		class="@(CurrentAgent == agent.Name ? "selected" : "")">
+	<img src="https://res.cloudinary.com/dk3rdh3yo/image/upload/ar_1,c_crop,g_north_west,w_150,x_50,y_150,f_auto/v1697076582/cobradex/@agent.Name/v1/card.png"
+			 alt="@agent.VersionName roster card" />
+	@agent.VersionName
+</li>
+
+@code {
+	[Parameter]
+	public Agent agent { get; set; }
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		CobraStateContainer.OnStateChange += StateHasChanged;
+	}
+
+	public string CurrentAgent
+	{
+		get
+		{
+			return CobraStateContainer.currentUser?.Agent != null ? CobraStateContainer.currentUser.Agent : "airborne";
+		}
+	}
+
+	public async Task SelectAgentAsync()
+	{
+		await CobraStateContainer.UpdateMetaData(ClerkClient, agent);
+	}
+
+	public void Dispose() => CobraStateContainer.OnStateChange -= StateHasChanged;
+}

@@ -1,5 +1,5 @@
 <p style="text-align:center">
-<img alt="Cobra logo" src="public/images/cobra-android-chrome-192x192.png">
+<img alt="Cobra logo" src="CobraCon/wwwroot/images/cobra-android-chrome-192x192.png">
 </p>
 
 # CobraCon 2023

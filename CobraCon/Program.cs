@@ -15,6 +15,14 @@ builder.Services.AddClerkApiClient(config =>
 
 builder.Services.AddScoped<CobraStateContainer>();
 
+var supabaseClient = new Supabase.Client(
+                                builder.Configuration["Supabase:Url"],
+                                builder.Configuration["Supabase:Key"]);
+
+RosterStateContainer rosterStateContainer = new RosterStateContainer(supabaseClient);
+await rosterStateContainer.LoadRosterAsync();
+builder.Services.AddSingleton(rosterStateContainer);
+
 var app = builder.Build();
 
 app.UseHsts();

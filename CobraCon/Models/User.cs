@@ -4,13 +4,15 @@
 
     public class User
     {
+        public User() { }
+
         public User(Clerk.Net.Client.Models.User clerkUser)
         {
-            Id = clerkUser.Id;
+            Id = clerkUser.Id!;
             Name = $"{clerkUser.FirstName} {clerkUser.LastName}";
-            ProfileImageUrl = clerkUser.ImageUrl;
+            ProfileImageUrl = clerkUser.ImageUrl!;
 
-            var metadata = clerkUser.PublicMetadata.AdditionalData;
+            var metadata = clerkUser.PublicMetadata!.AdditionalData;
             if (metadata.TryGetValue("agent", out var _agent))
             {
                 Agent = (string)_agent;

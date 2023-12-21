@@ -1,25 +1,25 @@
 ﻿@inject CobraStateContainer CobraStateContainer
 
-<div class="badge">
-	@if (CobraStateContainer.currentUser != null)
-	{
-		<h2>
-			@CobraStateContainer.currentUser.Name joined
-			@CobraStateContainer.currentUser.AllegianceDisplay!
-		</h2>
-		<p>Will you join them?</p>
-		<img src="@CobraStateContainer.currentUser.Url" />
-	}
+<div class="editor">
+	<div class="opener">
+		<h1>Welcome @CobraStateContainer.currentUser!.Name</h1>
+		<p>
+			You've made it through the first phase of your induction. Now, the
+			real decision lies ahead.
+		</p>
+
+		<h2>Choose Your Allegiance & Codename</h2>
+	</div>
+	<Allegiance />
+	<Roster />
 </div>
 
 @code {
 	protected override void OnInitialized()
 	{
+		base.OnInitialized();
 		CobraStateContainer.OnStateChange += StateHasChanged;
 	}
 
-	public void Dispose()
-	{
-		CobraStateContainer.OnStateChange -= StateHasChanged;
-	}
+	public void Dispose() => CobraStateContainer.OnStateChange -= StateHasChanged;
 }

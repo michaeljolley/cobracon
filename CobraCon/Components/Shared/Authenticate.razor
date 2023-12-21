@@ -18,11 +18,10 @@
 
 	protected override void OnInitialized()
 	{
+		base.OnInitialized();
 		CobraStateContainer.OnStateChange += StateHasChanged;
 	}
 
-	public void Dispose()
-	{
+	public void Dispose() =>
 		CobraStateContainer.OnStateChange -= StateHasChanged;
-	}
 }

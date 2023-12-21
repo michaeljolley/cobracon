@@ -1,0 +1,50 @@
+﻿.roster {
+  display: flex;
+  flex-direction: column;
+  color: var(--card-gray);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: var(--bg-index-card);
+  border: 3px dashed var(--card-gray);
+  border-radius: 0 1rem 1rem 1rem;
+  margin: 0;
+  padding: 0 1rem;
+  margin-bottom: 20px;
+}
+
+.roster h3 {
+  color: var(--card-gray);
+  text-shadow: none;
+}
+
+.roster ul {
+  display: none;
+  margin: 0;
+  max-height: 500px;
+  overflow: scroll;
+  margin-bottom: 20px;
+  padding-right: 15px;
+}
+
+.roster ul.selected {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: auto;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 640px) {
+  .roster ul.selected {
+    grid-template-columns: 1fr;
+  }
+
+  .roster ul {
+    max-height: 250px;
+  }
+}
+
+@media screen and (min-width: 721px) and (max-width: 1024px) {
+  .roster ul.selected {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
