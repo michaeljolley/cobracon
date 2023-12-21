@@ -1,10 +1,7 @@
-
-
 const clerkTag = document.getElementById("clerkTag");
 
 clerkTag.addEventListener('load', async () => {
   await window.Clerk.load();
-
   window.Clerk.addListener(clerkListener);
 });
 
@@ -17,10 +14,12 @@ window.mountSignIn = () => {
 };
 
 window.homeRef = null;
+window.user = null;
 
 window.setHomeRef = (homeRef, allegiance) => {
   window.homeRef = homeRef;
   document.querySelector('html').setAttribute('data-theme', allegiance || '');
+  window.updateUser();
 }
 
 window.copyToClipboard = (url) => {
@@ -28,9 +27,15 @@ window.copyToClipboard = (url) => {
 }
 
 const clerkListener = async (event) => {
-  if (event.user && window.homeRef) {
-    const { user } = event;
-    await window.homeRef.invokeMethodAsync('UpdateUser', userMapper(user));
+  if (event.user) {
+    window.user = event.user;
+    window.updateUser();
+  }
+};
+
+window.updateUser = () => {
+  if (window.user && window.homeRef) {
+    await window.homeRef.invokeMethodAsync('UpdateUser', userMapper(window.user));
   }
 };
 
