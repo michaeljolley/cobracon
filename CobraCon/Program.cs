@@ -10,14 +10,14 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddClerkApiClient(config =>
 {
-    config.SecretKey = builder.Configuration["Clerk:SecretKey"];
+    config.SecretKey = builder.Configuration["ClerkSecretKey"];
 });
 
 builder.Services.AddScoped<CobraStateContainer>();
 
 var supabaseClient = new Supabase.Client(
-                                builder.Configuration["Supabase:Url"],
-                                builder.Configuration["Supabase:Key"]);
+                                builder.Configuration["SupabaseUrl"],
+                                builder.Configuration["SupabaseKey"]);
 
 RosterStateContainer rosterStateContainer = new RosterStateContainer(supabaseClient);
 await rosterStateContainer.LoadRosterAsync();
